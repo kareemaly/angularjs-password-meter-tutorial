@@ -1,0 +1,51 @@
+<html>
+	<head>
+
+
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		
+	</head>
+
+	<body ng-app="passwordApp">
+		
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4" ng-controller="PasswordCtrl">
+				
+				<h1><span class="glyphicon glyphicon-user"></span> Sign up</h1>
+
+				<hr>
+
+				<form novalidate name="form">
+					
+					<div class="form-group" 
+						ng-class="{'has-error': isInputInvalid(form.password), 'has-success': isInputValid(form.password)}"
+						>
+						<label for="password">Password</label>
+						<input type="password" name="password" ng-model="user.password" class="form-control" required>
+						<div class="progress" style="margin-top:10px">
+							<div class="progress-bar"
+									ng-class="{'progress-bar-success': isPasswordStrong(), 'progress-bar-warning': isPasswordOk(), 'progress-bar-danger': isPasswordWeak()}"
+									aria-valuenow="{{ passwordStrength }}"
+									aria-valuemin="0"
+									aria-valuemax="100"
+									style="width:{{ passwordStrength }}%">
+								
+							</div>
+						</div>
+					</div>
+
+					<button class="btn btn-success" ng-disabled="! form.$valid">Submit</button>
+
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+	<script src="scripts/app.js"></script>
+	<script src="scripts/services/password.js"></script>
+	<script src="scripts/controllers/password.js"></script>
+
+	</body>
+</html>
